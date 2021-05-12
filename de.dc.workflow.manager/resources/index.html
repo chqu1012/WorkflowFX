@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <style type="text/css">
+        html, body {
+            height: 100%;
+            margin: 0;
+        }
+
+		body {
+			overflow-x: hidden;
+			overflow-y: hidden;
+		}
+
+        #container {
+            height: 100%;
+        }
+    </style>
+</head>
+
+<body>
+<div id="container"></div>
+
+<script src="./package/min/vs/loader.js"></script>
+
+<script>
+    var editorCreatedCallback;
+
+	var foldingProvider;
+	var editorView;
+	var contentChangeListener;
+	var scrollChangeListener;
+	var selection;
+	var copiedText;
+	var code;
+	var language;
+	var readOnly = true;
+	
+	require.config({ paths: { 'vs': './package/min/vs' }});
+	require(['vs/editor/editor.main'], function() {
+
+		editorView = monaco.editor.create(document.getElementById('container'), {
+			//theme: 'mylangTheme',
+			value: code,
+			language: 'java',
+			readOnly: readOnly,
+            automaticLayout: true,
+            fontSize: 10,
+            roundedSelection: true,
+			mouseWheelScrollSensitivity: 0.1,
+			scrollBeyondLastLine: false,
+
+            scrollbar: {
+                useShadows: true,
+                verticalHasArrows: true,
+                horizontalHasArrows: true,
+                vertical: 'auto',
+                horizontal: 'auto',
+                verticalScrollbarSize: 17,
+                horizontalScrollbarSize: 17,
+                arrowSize: 30,
+				alwaysConsumeMouseWheel: true
+	        }
+
+        });
+        
+        editorView.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.KEY_S, function() {
+			alert('F9 pressed!');
+		});
+        
+        if(editorCreatedCallback!=null) {
+            editorCreatedCallback.apply([editorView]);
+        }
+
+		editorView.onDidChangeModelContent((ev) => {
+            if(contentChangeListener!=null) {
+               contentChangeListener.apply([ev]);
+            }
+        });
+
+		editorView.onDidScrollChange((ev) => {
+            if(scrollChangeListener!=null) {
+               scrollChangeListener.apply([ev]);
+            }
+        });
+        
+        editorView.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.KEY_C, function() {
+        	editorView.trigger('source','editor.action.clipboardCopyAction');
+        });
+
+	});
+	
+	function setLanguage(lang){ language = lang; }
+
+	function setReadOnly(readOnlyValue){ readOnly = readOnlyValue; }
+
+	function setCode(codeContent){ code = codeContent; }
+
+	function copySelection(){ copiedText = getSelection(); }
+
+	function pasteSelection(){ editorView.trigger('keyboard', 'type', {text: copiedText}); }
+
+	function getSelection() { return editorView.getModel().getValueInRange(editorView.getSelection());}
+
+	function getLanguage() { return [ '' ].join('\n');}
+
+	function getCode() { return [ '' ].join('\n');}
+
+	function getEditorView() { 	return editorView;}
+</script>
+
+</body>
+</html>

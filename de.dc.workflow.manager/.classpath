@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry exported="true" kind="lib" path="libs/emf.workbench/de.dc.emf.fx.workbench.jmetro.ui.workflow_0.1.2.202105112114.jar"/>
 	<classpathentry exported="true" kind="lib" path="libs/emf.workbench/de.dc.emf.fx.workbench.jmetro.ui_1.0.17.202105112102.jar"/>
 	<classpathentry exported="true" kind="lib" path="libs/javassist.jar"/>
 	<classpathentry exported="true" kind="lib" path="libs/jmetro-8.6.14.jar"/>
-	<classpathentry exported="true" kind="lib" path="libs/reflections-0.9.12.jar"/>
-	<classpathentry exported="true" kind="lib" path="libs/emf.workbench/de.dc.emf.fx.workbench.jmetro.core_1.0.6.202104202035.jar"/>
-	<classpathentry exported="true" kind="lib" path="libs/emf.workbench/de.dc.emf.fx.workbench.jmetro.properties_0.1.2.202104202035.jar"/>
+	<classpathentry exported="true" kind="lib" path="libs/emf.workbench/de.dc.emf.fx.workbench.jmetro.core_1.0.6.202104200822.jar"/>
+	<classpathentry exported="true" kind="lib" path="libs/emf.workbench/de.dc.emf.fx.workbench.jmetro.data.h2_0.1.6.202104200822.jar"/>
+	<classpathentry exported="true" kind="lib" path="libs/emf.workbench/de.dc.emf.fx.workbench.jmetro.properties_0.1.2.202104200822.jar"/>
+	<classpathentry kind="lib" path="libs/emf.workbench/de.dc.emf.fx.workbench.jmetro.ui.workflow_0.1.2.202105112114.jar"/>
+	<classpathentry kind="lib" path="libs/reflections-0.9.12.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
 	<classpathentry kind="con" path="org.eclipse.pde.core.requiredPlugins"/>
 	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="src" path="resources"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
